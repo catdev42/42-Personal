@@ -1,2 +1,2 @@
 # 42 Berlin
-# Core Curriculur Nov 14 2023
+Core Curriculur Nov 14 2023
