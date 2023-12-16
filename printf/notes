@@ -1,0 +1,19 @@
+cspdiuxX%
+
+CHAR • %c Prints a single character.
+
+STR • %s Prints a string (as defined by the common C convention).
+
+PTR • %p The void * pointer argument has to be printed in hexadecimal format.
+
+INT • %d Prints a decimal (base 10) number.
+
+INT • %i Prints an integer in base 10.
+
+INT • %u Prints an unsigned decimal (base 10) number.
+
+HEX • %x Prints a number in hexadecimal (base 16) lowercase format.
+
+HEX • %X Prints a number in hexadecimal (base 16) uppercase format.
+
+• %% Prints a percent sign.
