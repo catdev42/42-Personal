@@ -6,5 +6,7 @@
 
 int	ft_printf(const char *string, ...);
 
+int ft_printchar(char c, int fd)
+int	ft_printuns(unsigned int u)
 
 #endif

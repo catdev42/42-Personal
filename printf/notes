@@ -1,6 +1,6 @@
 cspdiuxX%
 
-CHAR • %c Prints a single character.
+CHAR • %c Prints a single character. OK
 
 STR • %s Prints a string (as defined by the common C convention).
 
