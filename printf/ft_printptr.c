@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 20:24:14 by myakoven          #+#    #+#             */
-/*   Updated: 2023/12/18 01:36:03 by myakoven         ###   ########.fr       */
+/*   Updated: 2023/12/18 21:31:13 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,9 @@ void	ft_putchar_fd(char c, int fd)
 	write(fd, &c, 1);
 }
 */
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-void	ft_print_it(uintptr_t address)
-{
-	while (address > 16)
-	{
-		ft_print_it(address / 16);
-		address = address % 16;
-	}
-	if (address <= 9)
-		ft_putchar_fd((address + '0'), 1);
-	if (address > 9)
-		ft_putchar_fd((address + 'a' - 10), 1);
-}
+void	ft_print_it(uintptr_t address);
 
 int	ft_printptr(uintptr_t address)
 {
@@ -49,6 +38,19 @@ int	ft_printptr(uintptr_t address)
 		count++;
 	}
 	return (count + 2);
+}
+
+void	ft_print_it(uintptr_t address)
+{
+	while (address > 15)
+	{
+		ft_print_it(address / 16);
+		address = address % 16;
+	}
+	if (address <= 9)
+		ft_putchar_fd((address + '0'), 1);
+	if (address > 9)
+		ft_putchar_fd((address + 'a' - 10), 1);
 }
 
 /*

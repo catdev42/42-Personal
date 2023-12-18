@@ -6,7 +6,7 @@
 #    By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 15:27:14 by myakoven          #+#    #+#              #
-#    Updated: 2023/12/16 21:41:41 by myakoven         ###   ########.fr        #
+#    Updated: 2023/12/18 02:15:55 by myakoven         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBDIR = ./libft
 #------------------------------------------------#
 
 HEADERS 	:= .
-SRC     	:= 
+SRC     	:= ft_printf_utils.c ft_printf.c ft_printhex.c ft_printptr.c ft_printuns.c
 OBJS     	= $(SRC:.c=.o)
 
 BONUS		= 
@@ -56,7 +56,7 @@ fclean: clean
 
 re: fclean all
 
-bonus:	$(OBJS) $(BONUS_OBJS)
-	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+# bonus:	$(OBJS) $(BONUS_OBJS)
+# 	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 
 #cc $(CFLAGS) -c $(SRC) -I $(HEADERS)

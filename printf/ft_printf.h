@@ -1,42 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/17 18:58:34 by myakoven          #+#    #+#             */
-/*   Updated: 2023/12/18 20:21:42 by myakoven         ###   ########.fr       */
+/*   Created: 2023/12/18 02:10:52 by myakoven          #+#    #+#             */
+/*   Updated: 2023/12/18 22:10:32 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	ft_printchar(int c)
-{
-	write(1, &c, 1);
-	return (1);
-}
+# include <stdarg.h>
+# include "./libft/libft.h"
 
-int	ft_printstr(char *str)
-{
-	if (!str)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
-}
+int	ft_printf(const char *string, ...);
 
-int	ft_printnum(int n)
-{
-	int		count;
-	char	*numstr;
+int	ft_printchar(int c);
+int	ft_printstr(char *str);
+int	ft_printnum(int n);
 
-	count = 0;
-	numstr = ft_itoa(n);
-	count = ft_printstr(numstr);
-	free(numstr);
-	return (count);
-}
+int	ft_printuns(unsigned int u);
+
+int	ft_printptr(uintptr_t address);
+int	ft_printhex(unsigned int num, char format);
+
+#endif
