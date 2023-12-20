@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 21:02:10 by myakoven          #+#    #+#             */
-/*   Updated: 2023/12/18 22:39:13 by myakoven         ###   ########.fr       */
+/*   Updated: 2023/12/20 01:25:55 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	ft_printf(const char *string, ...)
 	va_list	args;
 	int		count;
 	int		i;
+	int		checker;
 
 	count = 0;
 	i = 0;
@@ -29,16 +30,17 @@ int	ft_printf(const char *string, ...)
 	{
 		if (string[i] == '%')
 		{
-			if (!ft_strchr("cspdiuxX%", string[i + 1]))
+			checker = ft_checkcase(args, string[++i]);
+			if (checker == -1)
 				return (-1);
-			count += ft_checkcase(args, string[++i]);
+			count += checker;
 		}
 		else
 			count += ft_printchar(string[i]);
 		i++;
 	}
 	va_end(args);
-		return (count);
+	return (count);
 }
 
 int	ft_checkcase(va_list args, const char format)
@@ -60,5 +62,7 @@ int	ft_checkcase(va_list args, const char format)
 		count += ft_printuns(va_arg(args, unsigned int));
 	else if (format == 'x' || format == 'X')
 		count += ft_printhex(va_arg(args, unsigned long long int), format);
+	else
+		return (-1);
 	return (count);
 }

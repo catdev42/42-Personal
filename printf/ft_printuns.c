@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 01:14:09 by myakoven          #+#    #+#             */
-/*   Updated: 2023/12/18 21:35:34 by myakoven         ###   ########.fr       */
+/*   Updated: 2023/12/18 23:35:02 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	ft_printuns(unsigned int u)
 	char	*numstr;
 
 	numstr = ft_uitoa(u);
+	if (!numstr)
+		return (-1);
 	ft_putstr_fd(numstr, 1);
 	free(numstr);
 	return (ft_unslen(u));
