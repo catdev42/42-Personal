@@ -1,3 +1,7 @@
 extra
 main.c
 a.out
+old
+*.a
+*.o
+notes
