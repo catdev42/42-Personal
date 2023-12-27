@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 00:11:55 by myakoven          #+#    #+#             */
-/*   Updated: 2023/12/25 20:36:21 by myakoven         ###   ########.fr       */
+/*   Updated: 2023/12/25 23:16:50 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@
 # include <unistd.h>
 
 char				*get_next_line(int fd);
+
+/*UTILS*/
+
+char	*ft_strchr(const char *s, int c);
+
 
 /******* LIST STUFF *******/
 typedef struct s_list

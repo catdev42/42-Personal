@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/22 00:16:30 by myakoven          #+#    #+#             */
-/*   Updated: 2023/12/25 20:41:31 by myakoven         ###   ########.fr       */
+/*   Created: 2023/12/18 20:12:14 by myakoven          #+#    #+#             */
+/*   Updated: 2023/12/18 21:12:25 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "ft_printf.h"
+#include <stdio.h>
+#include <limits.h>
 
-// ssize_t read(int fildes, void *buf, size_t nbyte);
-
-char	*get_next_line(int fd)
+int	main(void)
 {
-	static t_list	**storage;
-	char			*buf;
+	ft_printf("Hello there, just testing %%/n");
+	printf("Hello there, just testing %%/n");
 
-	storage = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	read(fd, buf, BUFFER_SIZE);
+	// ft_printf(" %u %u %u %u %u %u %u", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN,
+	// 	ULONG_MAX, 0, -42);
+	// printf(" %u %u %u %u %u %u %u", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN,
+	// 	ULONG_MAX, 0, -42);
 }

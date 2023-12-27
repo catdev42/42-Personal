@@ -6,18 +6,18 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 00:38:49 by myakoven          #+#    #+#             */
-/*   Updated: 2023/12/22 00:43:05 by myakoven         ###   ########.fr       */
+/*   Updated: 2023/12/27 02:46:37 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-t_list	*ft_lstlast(t_list *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
-}
+// t_list	*ft_lstlast(t_list *lst)
+// {
+// 	if (!lst)
+// 		return (NULL);
+// 	while (lst->next)
+// 		lst = lst->next;
+// 	return (lst);
+// }
 
 t_list	*ft_lstnew(void *content)
 {
@@ -58,7 +58,8 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	*lst = NULL;
 }
 
-void	del_char(char *str)
+void	del_char(void *ptr)
 {
-	free(str);
+	if (ptr)
+		free((char *)ptr);
 }
