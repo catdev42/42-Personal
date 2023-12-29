@@ -6,18 +6,9 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 03:02:39 by myakoven          #+#    #+#             */
-/*   Updated: 2023/12/29 01:51:57 by myakoven         ###   ########.fr       */
+/*   Updated: 2023/12/29 02:36:44 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// char	*get_next_line(int fd);
-// size_t	ft_strlen(const char *s);
-// char	*ft_strjoinbuff(char const *s1, char const *buff);
-// char	*ft_takeline(char *line, char *buffer);
-// char	*ft_strchr(const char *s, int c);
-// char	*ft_substr(char const *s, unsigned int start, size_t len);
-// void	*ft_memmove(void *dest, const void *src, size_t n);
-// void	ft_bzero(void *s, size_t n);
 
 #include "get_next_line.h"
 
@@ -25,9 +16,6 @@ char	*get_next_line(int fd)
 {
 	static char	buffer[BUFFER_SIZE + 1];
 	char		*line;
-	char		*newline;
-	int			bytes_read;
-	int			i;
 
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
@@ -35,26 +23,9 @@ char	*get_next_line(int fd)
 	line = ft_strjoinbuff(line, buffer);
 	if (!line)
 		return (ft_clearfree(buffer, line));
-	bytes_read = 1;
-	if (ft_strchr(buffer, '\n'))
-		bytes_read = 0;
-	while (bytes_read > 0)
-	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read < BUFFER_SIZE && bytes_read >= 0)
-		{
-			i = bytes_read;
-			while (i < BUFFER_SIZE)
-				buffer[i++] = 0;
-		}
-		newline = ft_strjoinbuff(line, buffer);
-		if (!newline || bytes_read == -1)
-			return (ft_clearfree(buffer, line));
-		free(line);
-		line = newline;
-		if (ft_strchr(line, '\n'))
-			break ;
-	}
+	line = ft_read(fd, line, buffer);
+	if (!line)
+		return (NULL);
 	line = ft_takeline(line, buffer);
 	if (!ft_strlen(line))
 		return (ft_clearfree(buffer, line));
@@ -122,4 +93,33 @@ char	*ft_clearfree(char *buffer, char *line)
 		return (NULL);
 	free(line);
 	return (NULL);
+}
+
+char	*ft_read(int fd, char *line, char *buffer)
+{
+	int		i;
+	int		bytes_read;
+	char	*newline;
+
+	bytes_read = 1;
+	if (ft_strchr(buffer, '\n'))
+		bytes_read = 0;
+	while (bytes_read > 0)
+	{
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read < BUFFER_SIZE && bytes_read >= 0)
+		{
+			i = bytes_read;
+			while (i < BUFFER_SIZE)
+				buffer[i++] = 0;
+		}
+		newline = ft_strjoinbuff(line, buffer);
+		if (!newline || bytes_read == -1)
+			return (ft_clearfree(buffer, line));
+		free(line);
+		line = newline;
+		if (ft_strchr(line, '\n'))
+			break ;
+	}
+	return (line);
 }
