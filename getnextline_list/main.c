@@ -1,21 +1,13 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/25 22:53:17 by myakoven          #+#    #+#             */
-/*   Updated: 2023/12/25 22:56:29 by myakoven         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "get_next_line.c"
+#include <stdio.h>
 
-#include "get_next_line.h"
-
-int main(void)
+int	main(void)
 {
-    int fd;
+	int	fd;
 
-    fd = open("sample.txt", O_RDWR);
-     
+	fd = open("read_error.txt", O_RDWR);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	return (0);
 }
