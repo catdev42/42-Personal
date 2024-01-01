@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 03:02:39 by myakoven          #+#    #+#             */
-/*   Updated: 2024/01/01 17:29:37 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/01/01 19:53:19 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,43 +58,6 @@ char	*ft_takeline(char *line, char *buffer)
 	return (newline);
 }
 
-char	*ft_strjoinbuff(char *s1, char const *buff)
-{
-	size_t	len_s1;
-	size_t	lenbuff;
-	size_t	i;
-	size_t	j;
-	char	*string;
-
-	len_s1 = ft_strlen(s1);
-	lenbuff = ft_strlen(buff);
-	i = 0;
-	j = 0;
-	string = malloc(sizeof(char) * (len_s1 + BUFFER_SIZE) + 1);
-	if (!(string))
-		return (NULL);
-	while (i < (len_s1))
-	{
-		string[i] = s1[i];
-		i++;
-	}
-	while (i < (len_s1 + lenbuff))
-	{
-		string[i++] = buff[j++];
-	}
-	string[i] = 0;
-	return (string);
-}
-
-char	*ft_clearfree(char *buffer, char *line)
-{
-	ft_bzero(buffer, BUFFER_SIZE);
-	if (!line)
-		return (NULL);
-	free(line);
-	return (NULL);
-}
-
 char	*ft_read(int fd, char *line, char *buffer)
 {
 	int		i;
@@ -116,13 +79,64 @@ char	*ft_read(int fd, char *line, char *buffer)
 		newline = ft_strjoinbuff(line, buffer);
 		if (!newline || bytes_read == -1)
 			return (ft_clearfree(buffer, line));
-		free(line);
 		line = newline;
 		if (ft_strchr(line, '\n'))
 			break ;
 	}
 	return (line);
 }
+
+char	*ft_strjoinbuff(char *s1, char const *buff)
+{
+	int		len_s1;
+	int		i;
+	int		j;
+	char	*string;
+
+	len_s1 = ft_strlen(s1);
+	i = -1;
+	j = 0;
+	if (BUFFER_SIZE >= 50)
+		string = malloc((len_s1 + BUFFER_SIZE) + 1);
+	else if (BUFFER_SIZE < 50 & len_s1 == 0)
+		string = malloc(len_s1 + 1000 + 1);
+	else if (BUFFER_SIZE < 50 && len_s1 % 1000 < (999 - BUFFER_SIZE))
+		string = s1;
+	else
+		string = malloc(len_s1 + 1000 + (1000 - len_s1 % 1000 + 1) + 1);
+	if (!(string))
+		return (NULL);
+	while (++i < (len_s1))
+		string[i] = s1[i];
+	if (string != s1)
+		free(s1);
+	while (i < (len_s1 + BUFFER_SIZE + 1))
+		string[i++] = buff[j++];
+	return (string);
+}
+
+char	*ft_clearfree(char *buffer, char *line)
+{
+	ft_bzero(buffer, BUFFER_SIZE);
+	if (!line)
+		return (NULL);
+	free(line);
+	return (NULL);
+}
+/*
+#include <stdio.h>
+
+int	main(void)
+{
+	int	fd;
+
+	fd = open("read_error.txt", O_RDWR);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	return (0);
+}
+*/
 /*
 void	*ft_calloc(size_t nmemb, size_t size)
 {
