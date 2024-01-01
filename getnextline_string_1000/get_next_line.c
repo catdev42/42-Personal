@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 03:02:39 by myakoven          #+#    #+#             */
-/*   Updated: 2024/01/01 22:41:11 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/01/01 22:59:17 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,9 @@ char	*ft_read(int fd, char *line, char *buffer)
 	int		bytes_read;
 	char	*newline;
 
-	bytes_read = 1;
 	if (ft_strchr(buffer, '\n'))
-		bytes_read = 0;
-	while (bytes_read > 0)
+		return (line);
+	while (buffer)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read < BUFFER_SIZE && bytes_read >= 0)
@@ -82,7 +81,7 @@ char	*ft_read(int fd, char *line, char *buffer)
 		if (line != newline)
 			free(line);
 		line = newline;
-		if (ft_strchr(line, '\n'))
+		if (ft_strchr(line, '\n') || bytes_read == 0)
 			break ;
 	}
 	return (line);
@@ -98,7 +97,6 @@ char	*ft_strjoinbuff(char *s1, char const *buff)
 	len_s1 = ft_strlen(s1);
 	i = -1;
 	j = 0;
-	
 	if (BUFFER_SIZE >= 50)
 		string = malloc((len_s1 + BUFFER_SIZE) + 1);
 	else if (BUFFER_SIZE < 50 & len_s1 == 0)
@@ -107,13 +105,12 @@ char	*ft_strjoinbuff(char *s1, char const *buff)
 		string = s1;
 	else
 		string = malloc(len_s1 + 1000 + (1000 - len_s1 % 1000 + 1) + 1);
-	
 	if (!(string))
 		return (NULL);
-	while (++i < (len_s1))
+	while (++i < (len_s1) && string != s1)
 		string[i] = s1[i];
-	// if (string != s1)
-	// 	free(s1);
+	if (string == s1)
+		i = len_s1;
 	while (i < (len_s1 + BUFFER_SIZE + 1))
 		string[i++] = buff[j++];
 	return (string);
