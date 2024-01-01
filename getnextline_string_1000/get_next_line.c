@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 03:02:39 by myakoven          #+#    #+#             */
-/*   Updated: 2024/01/01 19:53:19 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/01/01 22:41:11 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ char	*ft_read(int fd, char *line, char *buffer)
 		newline = ft_strjoinbuff(line, buffer);
 		if (!newline || bytes_read == -1)
 			return (ft_clearfree(buffer, line));
+		if (line != newline)
+			free(line);
 		line = newline;
 		if (ft_strchr(line, '\n'))
 			break ;
@@ -96,6 +98,7 @@ char	*ft_strjoinbuff(char *s1, char const *buff)
 	len_s1 = ft_strlen(s1);
 	i = -1;
 	j = 0;
+	
 	if (BUFFER_SIZE >= 50)
 		string = malloc((len_s1 + BUFFER_SIZE) + 1);
 	else if (BUFFER_SIZE < 50 & len_s1 == 0)
@@ -104,12 +107,13 @@ char	*ft_strjoinbuff(char *s1, char const *buff)
 		string = s1;
 	else
 		string = malloc(len_s1 + 1000 + (1000 - len_s1 % 1000 + 1) + 1);
+	
 	if (!(string))
 		return (NULL);
 	while (++i < (len_s1))
 		string[i] = s1[i];
-	if (string != s1)
-		free(s1);
+	// if (string != s1)
+	// 	free(s1);
 	while (i < (len_s1 + BUFFER_SIZE + 1))
 		string[i++] = buff[j++];
 	return (string);
