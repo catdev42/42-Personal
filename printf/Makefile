@@ -6,7 +6,7 @@
 #    By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 15:27:14 by myakoven          #+#    #+#              #
-#    Updated: 2023/12/18 02:15:55 by myakoven         ###   ########.fr        #
+#    Updated: 2024/01/04 17:48:36 by myakoven         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,8 @@ HEADERS 	:= .
 SRC     	:= ft_printf_utils.c ft_printf.c ft_printhex.c ft_printptr.c ft_printuns.c
 OBJS     	= $(SRC:.c=.o)
 
-BONUS		= 
-BONUS_OBJS	= $(BONUS:.c=.o)
+# BONUS		= 
+# BONUS_OBJS	= $(BONUS:.c=.o)
 
 CC      	:= cc
 CFLAGS  	:= -Wall -Wextra -Werror
@@ -44,14 +44,14 @@ makelib:
 	mv $(LIBNAME) $(NAME)
 
 $(NAME): makelib $(OBJS)
-	ar rc $(NAME) $(OBJS)
+	ar -r $(NAME) $(OBJS)
 
 clean:
-	rm -f *.o
+	rm -f $(OBJS)
 	cd $(LIBDIR) && make clean
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -f $(NAME)
 	cd $(LIBDIR) && make fclean
 
 re: fclean all
