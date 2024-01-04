@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 20:24:14 by myakoven          #+#    #+#             */
-/*   Updated: 2023/12/18 21:31:13 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/01/04 18:12:34 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	ft_printptr(uintptr_t address)
 	count = 0;
 	if (address == 0)
 	{
-		write(1, "0x0", 3);
-		return (3);
+		write(1, "(nil)", 5);
+		return (5);
 	}
 	write(1, "0x", 2);
 	ft_print_it(address);

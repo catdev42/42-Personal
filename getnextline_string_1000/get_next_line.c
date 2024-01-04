@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 03:02:39 by myakoven          #+#    #+#             */
-/*   Updated: 2024/01/01 23:04:25 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/01/04 20:34:33 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,12 @@ char	*ft_strjoinbuff(char *s1, char const *buff)
 	j = 0;
 	if (BUFFER_SIZE >= 50)
 		string = malloc((len_s1 + BUFFER_SIZE) + 1);
-	else if (BUFFER_SIZE < 50 && len_s1 == 0)
-		string = malloc(len_s1 + 1000 + 1);
-	else if (BUFFER_SIZE < 50 && len_s1 % 1000 < (999 - BUFFER_SIZE))
+	else if (BUFFER_SIZE < 50 && (len_s1 == 0 || len_s1 % 1000 == 0))
+		string = malloc(len_s1 + 1001);
+	else if (BUFFER_SIZE < 50 && len_s1 % 1000 < (998 - BUFFER_SIZE))
 		string = s1;
 	else
-		string = malloc(len_s1 + 1000 + (1000 - len_s1 % 1000 + 1) + 1);
+		string = malloc(len_s1 + 1000 + (998 - len_s1 % 1000) + 1);
 	if (!(string))
 		return (NULL);
 	while (++i < (len_s1) && string != s1)
