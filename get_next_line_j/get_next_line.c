@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 17:05:03 by jadyar            #+#    #+#             */
-/*   Updated: 2024/01/21 23:02:34 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/01/22 15:30:35 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,43 @@ char	*read_buffer_data(int fd, char *buff_txt, char *longbuff)
 	}
 	return (longbuff);
 }
+/*
+char	*read_buffer_data(int fd, char **buff_txt, char *longbuff)
+{
+	char	*mergd_txt;
+	int		read_chrs;
 
+	// int		i;
+	read_chrs = 1;
+	// mergd_txt = NULL;
+	while (read_chrs > 0 && !ft_strchr(longbuff, '\n'))
+	{
+		ft_bzero(*buff_txt, BUFFER_SIZE);
+		read_chrs = read(fd, *buff_txt, BUFFER_SIZE);
+		if (read_chrs < 0)
+		{
+			return (NULL);
+			// if (*buff_txt)
+			// {
+			// 	free(*buff_txt);
+			// 	*buff_txt = NULL;
+			// }
+		}
+		if (read_chrs == 0)
+		{
+			// free(*buff_txt);
+			// *buff_txt = NULL;
+			return (longbuff);
+		}
+		mergd_txt = ft_strjoin(*buff_txt, longbuff);
+		free(longbuff);
+		if (!mergd_txt)
+			return (NULL);
+		longbuff = mergd_txt;
+	}
+	return (longbuff);
+}
+*/
 char	*ft_strjoin(char *buff_txt, char *longbuff)
 {
 	char	*n_str;
@@ -133,7 +169,7 @@ char	*process_line(char *longbuff, char *buff_txt)
 		line_len = ft_strlen(longbuff);
 	newline = ft_substr(longbuff, 0, line_len);
 	free(longbuff);
-	//was my version:
+	// was my version:
 	// i = 0;
 	// while (longbuff[i] != '\n' && longbuff[i])
 	// 	i++;

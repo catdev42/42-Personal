@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 17:05:45 by jadyar            #+#    #+#             */
-/*   Updated: 2024/01/21 20:16:21 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/01/22 15:30:21 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 char	*get_next_line(int fd);
 char	*read_buffer_data(int fd, char *buff_txt, char *longbuff);
+// char	*read_buffer_data(int fd, char **buff_txt, char *longbuff);
 char	*ft_strjoin(char *buff_txt, char *longbuff);
 
 char	*process_line(char *longbuff, char *buff_txt);

@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 17:04:48 by jadyar            #+#    #+#             */
-/*   Updated: 2024/01/21 21:48:43 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/01/22 15:14:53 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 	size_t	s_len;
 
-	s_len = ft_strlen(s);
 	if (!s)
 		return (NULL);
+	s_len = ft_strlen(s);
 	if (start > s_len)
 		start = s_len;
 	if (ft_strlen(s + start) < len)
@@ -122,4 +122,3 @@ void	ft_bzero(void *s, size_t n)
 		p[i++] = '\0';
 	}
 }
-
