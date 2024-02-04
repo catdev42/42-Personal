@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 01:11:09 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/02 01:17:28 by myakoven         ###   ########.fr       */
+/*   Created: 2023/11/18 20:17:22 by myakoven          #+#    #+#             */
+/*   Updated: 2023/11/19 20:11:37 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	t_dlist	**stack_a;
-	t_dlist	**stack_b;
+	unsigned char	*arr;
+	size_t			i;
 
-	if (argc < 2)
-		return (0);
-	if (argc == 2)
-		ft_split_ps(argv, ' ');
-	else
-		ft_init_list(argv);
+	i = 0;
+	arr = (unsigned char *)s;
+	while (i < n)
+	{
+		arr[i++] = (unsigned char)c;
+	}
+	return (s);
 }

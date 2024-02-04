@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 01:11:09 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/02 01:17:28 by myakoven         ###   ########.fr       */
+/*   Created: 2023/11/20 18:29:47 by myakoven          #+#    #+#             */
+/*   Updated: 2023/12/11 20:12:43 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	t_dlist	**stack_a;
-	t_dlist	**stack_b;
+	size_t	i;
+	size_t	j;
+	char	*str;
 
-	if (argc < 2)
-		return (0);
-	if (argc == 2)
-		ft_split_ps(argv, ' ');
-	else
-		ft_init_list(argv);
+	str = (char *)big;
+	if (!(*little))
+		return (str);
+	if (!big || !ft_strlen(big))
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		j = 0;
+		while (str[i + j] && str[i + j] == little[j] && (i + j) < len)
+		{
+			j++;
+			if (little[j] == 0)
+				return (&str[i]);
+		}
+		i++;
+	}
+	return (NULL);
 }

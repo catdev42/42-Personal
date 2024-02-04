@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 01:11:09 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/02 01:17:28 by myakoven         ###   ########.fr       */
+/*   Created: 2023/11/18 19:00:55 by myakoven          #+#    #+#             */
+/*   Updated: 2023/11/19 20:10:16 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_toupper(int c)
 {
-	t_dlist	**stack_a;
-	t_dlist	**stack_b;
-
-	if (argc < 2)
-		return (0);
-	if (argc == 2)
-		ft_split_ps(argv, ' ');
-	else
-		ft_init_list(argv);
+	if (c >= 'a' && c <= 'z')
+		c -= 32;
+	return (c);
 }

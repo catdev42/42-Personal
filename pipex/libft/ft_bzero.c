@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 01:11:09 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/02 01:17:28 by myakoven         ###   ########.fr       */
+/*   Created: 2023/11/18 20:35:37 by myakoven          #+#    #+#             */
+/*   Updated: 2023/11/19 20:11:46 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_bzero(void *s, size_t n)
 {
-	t_dlist	**stack_a;
-	t_dlist	**stack_b;
+	size_t			i;
+	unsigned char	*p;
 
-	if (argc < 2)
-		return (0);
-	if (argc == 2)
-		ft_split_ps(argv, ' ');
-	else
-		ft_init_list(argv);
+	p = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		p[i++] = '\0';
+	}
 }

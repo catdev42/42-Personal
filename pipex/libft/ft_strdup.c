@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 01:11:09 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/02 01:17:28 by myakoven         ###   ########.fr       */
+/*   Created: 2023/11/24 21:21:59 by myakoven          #+#    #+#             */
+/*   Updated: 2023/11/26 16:53:25 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strdup(const char *s)
 {
-	t_dlist	**stack_a;
-	t_dlist	**stack_b;
+	size_t	size;
+	size_t	i;
+	char	*dupl;
 
-	if (argc < 2)
-		return (0);
-	if (argc == 2)
-		ft_split_ps(argv, ' ');
-	else
-		ft_init_list(argv);
+	size = ft_strlen(s);
+	dupl = malloc(sizeof(char) * (size + 1));
+	if (dupl == NULL)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		dupl[i] = s[i];
+		i++;
+	}
+	dupl[i] = 0;
+	return (dupl);
 }

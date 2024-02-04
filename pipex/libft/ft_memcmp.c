@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 01:11:09 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/02 01:17:28 by myakoven         ###   ########.fr       */
+/*   Created: 2023/11/20 18:22:16 by myakoven          #+#    #+#             */
+/*   Updated: 2023/11/26 16:51:39 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	t_dlist	**stack_a;
-	t_dlist	**stack_b;
+	size_t			i;
+	unsigned char	*ps1;
+	unsigned char	*ps2;
 
-	if (argc < 2)
+	if (n == 0)
 		return (0);
-	if (argc == 2)
-		ft_split_ps(argv, ' ');
-	else
-		ft_init_list(argv);
+	ps1 = (unsigned char *)s1;
+	ps2 = (unsigned char *)s2;
+	i = 0;
+	while (i < n)
+	{
+		if (ps1[i] != ps2[i])
+			return (ps1[i] - ps2[i]);
+		i++;
+	}
+	return (0);
 }

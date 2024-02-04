@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split.c                                            :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:21:22 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/02 00:12:57 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/01/31 02:39:52 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
 static size_t	ft_wordcount(char const *s, char c);
 static char		**ft_free_split(char **arr, size_t index);
 
-char	**ft_split_ps(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**arr;
 	size_t	arr_counter;

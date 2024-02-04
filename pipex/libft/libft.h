@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 19:22:22 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/02 00:10:40 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/04 03:12:35 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "./get_next_line/get_next_line.h"
 
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);

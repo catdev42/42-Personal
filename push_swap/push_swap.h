@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 21:51:44 by myakoven          #+#    #+#             */
-/*   Updated: 2024/01/31 02:38:16 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/02 00:12:17 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ typedef struct d_list
 	struct d_list	*prev;
 	struct d_list	*next;
 }					t_dlist;
+
+char	**ft_split_ps(char const *s, char c);
+
 
 /*
 t_list				*ft_lstnew(void *content);
