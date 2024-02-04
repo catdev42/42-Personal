@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split.c                                            :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:21:22 by myakoven          #+#    #+#             */
-/*   Updated: 2024/01/31 02:36:03 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/04 21:17:09 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
 static size_t	ft_wordcount(char const *s, char c);
 static char		**ft_free_split(char **arr, size_t index);
@@ -34,10 +34,10 @@ char	**ft_split(char const *s, char c)
 		if (!ft_strchr(s, c))
 			word_len = ft_strlen(s);
 		else
-			word_len = (int)ft_strchr(s, c) - (int)s;
+			word_len = ft_strchr(s, c) - s;
 		arr[arr_counter++] = ft_substr(s, 0, word_len);
 		if (!arr[arr_counter - 1])
-			return (ft_free_split(arr, (arr_counter - 1)));
+			return (ft_free_split(arr, (arr_counter - 2)));
 		s += word_len;
 	}
 	arr[arr_counter] = NULL;
@@ -67,9 +67,11 @@ static char	**ft_free_split(char **arr, size_t index)
 {
 	while (index > 0)
 	{
-		index--;
 		free(arr[index]);
+		index--;
+
 	}
+	free(arr[0]);
 	free(arr);
 	return (NULL);
 }

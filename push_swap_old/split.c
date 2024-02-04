@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:21:22 by myakoven          #+#    #+#             */
-/*   Updated: 2024/01/31 16:49:32 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:15:48 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 static size_t	ft_wordcount(char const *s, char c);
 static char		**ft_free_split(char **arr, size_t index);
 
-char	**ft_split(char const *s, char c)
+char	**ft_split_ps(char const **s, char c)
 {
 	char	**arr;
 	size_t	arr_counter;
 	size_t	word_len;
 
-	arr = malloc((ft_wordcount(s, c) + 2) * sizeof(char *));
+	arr = malloc((ft_wordcount(s, c) + 1) * sizeof(char *));
 	if (!arr || !s)
 		return (NULL);
-	arr_counter = 0;
-	arr[arr_counter++] = ft_strdup("");
+	arr_counter = 1;
+	arr[0] == ft_strdup("");
 	while (*s)
 	{
 		while (*s == c)
@@ -42,6 +42,7 @@ char	**ft_split(char const *s, char c)
 		s += word_len;
 	}
 	arr[arr_counter] = NULL;
+	*s = arr;
 	return (arr);
 }
 

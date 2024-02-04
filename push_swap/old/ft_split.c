@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split.c                                            :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:21:22 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/04 21:15:40 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:32:32 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
 static size_t	ft_wordcount(char const *s, char c);
-char			**ft_free_split_ps(char **arr, size_t index);
+static char		**ft_free_split(char **arr, size_t index);
 
 char	**ft_split_ps(char const *s, char c)
 {
@@ -24,8 +24,8 @@ char	**ft_split_ps(char const *s, char c)
 	arr = malloc((ft_wordcount(s, c) + 2) * sizeof(char *));
 	if (!arr || !s)
 		return (NULL);
-	arr_counter = 1;
-	arr[0] = ft_strdup("");
+	arr_counter = 0;
+	arr[arr_counter++] = ft_strdup("");
 	while (*s)
 	{
 		while (*s == c)
@@ -38,7 +38,7 @@ char	**ft_split_ps(char const *s, char c)
 			word_len = ft_strchr(s, c) - s;
 		arr[arr_counter++] = ft_substr(s, 0, word_len);
 		if (!arr[arr_counter - 1])
-			return (ft_free_split_ps(arr, (arr_counter - 2)));
+			return (ft_free_split(arr, (arr_counter - 1)));
 		s += word_len;
 	}
 	arr[arr_counter] = NULL;
@@ -64,14 +64,13 @@ static size_t	ft_wordcount(char const *s, char c)
 	return (count);
 }
 
-char	**ft_free_split_ps(char **arr, size_t index)
+static char	**ft_free_split(char **arr, size_t index)
 {
 	while (index > 0)
 	{
-		free(arr[index]);
 		index--;
+		free(arr[index]);
 	}
-	free(arr[0]);
 	free(arr);
 	return (NULL);
 }

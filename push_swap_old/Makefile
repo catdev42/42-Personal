@@ -6,7 +6,7 @@
 #    By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 15:27:14 by myakoven          #+#    #+#              #
-#    Updated: 2024/02/04 21:13:04 by myakoven         ###   ########.fr        #
+#    Updated: 2024/02/02 00:18:06 by myakoven         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LIBFT = ./libft/libft.a
 #------------------------------------------------#
 
 HEADERS 	:= .
-SRC     	:= split.c main.c 
+SRC     	:= split.c
 OBJS     	= $(SRC:.c=.o)
 
 # BONUS		= 
@@ -39,18 +39,14 @@ all: $(NAME)
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-# makelib:
-# 	make -C $(LIBDIR)
-# 	cp $(LIBDIR)/$(LIBNAME) .
-# 	mv $(LIBNAME) $(NAME)
+makelib:
+	make -C $(LIBDIR)
+# cp $(LIBDIR)/$(LIBNAME) .
+# mv $(LIBNAME) $(NAME)
 
-$(LIBFT):
-	$(MAKE) -C $(LIBDIR)
-
-$(NAME): $(OBJS) $(LIBFT) 
-	$(CC) -g $(CFLAGS) $^ -o $@
-#	$(CC) $(CFLAGS) $(LIBFT) $(OBJS) -o push_swap
-#	ar -r $(NAME) $(OBJS)
+$(NAME): makelib $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o push_swap
+# ar -r $(NAME) $(OBJS)
 
 clean:
 	rm -f $(OBJS)
