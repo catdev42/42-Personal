@@ -6,22 +6,23 @@
 #    By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 15:27:14 by myakoven          #+#    #+#              #
-#    Updated: 2024/02/04 22:56:54 by myakoven         ###   ########.fr        #
+#    Updated: 2024/01/31 17:13:31 by myakoven         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= push_swap
+NAME	:= libftprintf.a
+
+LIBFTPRINTFDIR = ./libftprintf
 
 LIBNAME = libft.a
 LIBDIR = ./libft
-LIBFT = ./libft/libft.a
 
 #------------------------------------------------#
 #   INGREDIENTS                                  #
 #------------------------------------------------#
 
 HEADERS 	:= .
-SRC     	:= split.c dll_utils.c main.c 
+SRC     	:= ft_printf_utils.c ft_printf.c ft_printhex.c ft_printptr.c ft_printuns.c
 OBJS     	= $(SRC:.c=.o)
 
 # BONUS		= 
@@ -39,18 +40,13 @@ all: $(NAME)
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-# makelib:
-# 	make -C $(LIBDIR)
-# 	cp $(LIBDIR)/$(LIBNAME) .
-# 	mv $(LIBNAME) $(NAME)
+makelib:
+	make -C $(LIBDIR)
+	cp $(LIBDIR)/$(LIBNAME) $(LIBFTPRINTFDIR)
+	mv $(LIBFTPRINTFDIR)/$(LIBNAME) $(LIBFTPRINTFDIR)/$(NAME)
 
-$(LIBFT):
-	$(MAKE) -C $(LIBDIR)
-
-$(NAME): $(OBJS) $(LIBFT) 
-	$(CC) -g $(CFLAGS) $^ -o $@
-#	$(CC) $(CFLAGS) $(LIBFT) $(OBJS) -o push_swap
-#	ar -r $(NAME) $(OBJS)
+$(NAME): makelib $(OBJS)
+	ar -r $(NAME) $(OBJS)
 
 clean:
 	rm -f $(OBJS)

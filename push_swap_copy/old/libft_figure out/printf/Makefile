@@ -6,26 +6,19 @@
 #    By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 15:27:14 by myakoven          #+#    #+#              #
-#    Updated: 2024/02/04 22:56:54 by myakoven         ###   ########.fr        #
+#    Updated: 2024/02/04 19:16:05 by myakoven         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= push_swap
-
-LIBNAME = libft.a
-LIBDIR = ./libft
-LIBFT = ./libft/libft.a
+NAME	:= printf.a
 
 #------------------------------------------------#
 #   INGREDIENTS                                  #
 #------------------------------------------------#
 
 HEADERS 	:= .
-SRC     	:= split.c dll_utils.c main.c 
+SRC     	:= ft_print_hex.c ft_print_int.c ft_print_uns.c ft_printf_words.c ft_printf.c
 OBJS     	= $(SRC:.c=.o)
-
-# BONUS		= 
-# BONUS_OBJS	= $(BONUS:.c=.o)
 
 CC      	:= cc
 CFLAGS  	:= -Wall -Wextra -Werror
@@ -39,30 +32,13 @@ all: $(NAME)
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-# makelib:
-# 	make -C $(LIBDIR)
-# 	cp $(LIBDIR)/$(LIBNAME) .
-# 	mv $(LIBNAME) $(NAME)
-
-$(LIBFT):
-	$(MAKE) -C $(LIBDIR)
-
-$(NAME): $(OBJS) $(LIBFT) 
-	$(CC) -g $(CFLAGS) $^ -o $@
-#	$(CC) $(CFLAGS) $(LIBFT) $(OBJS) -o push_swap
-#	ar -r $(NAME) $(OBJS)
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
 clean:
 	rm -f $(OBJS)
-	cd $(LIBDIR) && make clean
 
 fclean: clean
 	rm -f $(NAME)
-	cd $(LIBDIR) && make fclean
 
 re: fclean all
-
-# bonus:	$(OBJS) $(BONUS_OBJS)
-# 	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
-
-#cc $(CFLAGS) -c $(SRC) -I $(HEADERS)

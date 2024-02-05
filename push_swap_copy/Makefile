@@ -6,7 +6,7 @@
 #    By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 15:27:14 by myakoven          #+#    #+#              #
-#    Updated: 2024/02/04 22:56:54 by myakoven         ###   ########.fr        #
+#    Updated: 2024/02/04 21:13:04 by myakoven         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LIBFT = ./libft/libft.a
 #------------------------------------------------#
 
 HEADERS 	:= .
-SRC     	:= split.c dll_utils.c main.c 
+SRC     	:= split.c main.c 
 OBJS     	= $(SRC:.c=.o)
 
 # BONUS		= 

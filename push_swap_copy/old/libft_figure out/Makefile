@@ -6,26 +6,31 @@
 #    By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 15:27:14 by myakoven          #+#    #+#              #
-#    Updated: 2024/02/04 22:56:54 by myakoven         ###   ########.fr        #
+#    Updated: 2024/02/04 20:18:41 by myakoven         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= push_swap
+NAME	:= libft.a
 
-LIBNAME = libft.a
-LIBDIR = ./libft
-LIBFT = ./libft/libft.a
+GNLNAME = get_next_line.a
+GNLDIR = ./get_next_line
+GNL = ./get_next_line/get_next_line.a
+
+PRINTFNAME = printf.a
+PRINTFDIR = ./printf
+PRINTF = ./printf/printf.a
+
+LIBFUNNAME = libfunctions.a
+LIBFUNDIR = ./libfunctions
+LIBFUN = ./libfunctions/libfunctions.a
 
 #------------------------------------------------#
 #   INGREDIENTS                                  #
 #------------------------------------------------#
 
 HEADERS 	:= .
-SRC     	:= split.c dll_utils.c main.c 
+SRC     	:= 
 OBJS     	= $(SRC:.c=.o)
-
-# BONUS		= 
-# BONUS_OBJS	= $(BONUS:.c=.o)
 
 CC      	:= cc
 CFLAGS  	:= -Wall -Wextra -Werror
@@ -39,30 +44,33 @@ all: $(NAME)
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-# makelib:
-# 	make -C $(LIBDIR)
-# 	cp $(LIBDIR)/$(LIBNAME) .
-# 	mv $(LIBNAME) $(NAME)
+makegnl:
+	make -C $(GNLDIR)
+# cp $(GNL) .
+# mv $(GNLNAME) $(NAME)
 
-$(LIBFT):
-	$(MAKE) -C $(LIBDIR)
+makeprintf:
+	make -C $(PRINTFDIR)
 
-$(NAME): $(OBJS) $(LIBFT) 
-	$(CC) -g $(CFLAGS) $^ -o $@
-#	$(CC) $(CFLAGS) $(LIBFT) $(OBJS) -o push_swap
-#	ar -r $(NAME) $(OBJS)
+makelibfun:
+	make -C $(LIBFUNDIR)
+
+$(NAME): makegnl makelibfun makeprintf $(OBJS)
+	ar rc $(NAME) $(LIBFUN) $(PRINTF) $(GNL) 
 
 clean:
-	rm -f $(OBJS)
-	cd $(LIBDIR) && make clean
+	rm -f *.o 
+	rm -f printf/*.o
+	cd $(GNLDIR) && make clean
+	cd $(PRINTFDIR) && make clean
+	cd $(LIBFUNDIR) && make clean
 
 fclean: clean
-	rm -f $(NAME)
-	cd $(LIBDIR) && make fclean
+	rm -rf $(NAME)
+	cd $(GNLDIR) && make fclean
+	cd $(PRINTFDIR) && make fclean
+	cd $(LIBFUNDIR) && make fclean
 
 re: fclean all
-
-# bonus:	$(OBJS) $(BONUS_OBJS)
-# 	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 
 #cc $(CFLAGS) -c $(SRC) -I $(HEADERS)

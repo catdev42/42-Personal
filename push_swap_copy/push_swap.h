@@ -6,14 +6,16 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 21:51:44 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/05 02:52:47 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/04 20:24:33 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #ifndef PUSH_SWAP
 # define PUSH_SWAP
 
-# include "./libft/libft.h"
+#include "./libft/libft.h"
 // #include <limits.h>
 // #include <stdio.h>
 // #include <stdlib.h>
@@ -29,13 +31,6 @@ typedef struct d_list
 
 char				**ft_split_ps(char const *s, char c);
 char				**ft_free_split_ps(char **arr, size_t index);
-
-int					push(t_dlist **stack_from, t_dlist **stack_to);
-
-void				ft_dlstadd_front(t_dlist **head, t_dlist *new);
-void				ft_dlstadd_back(t_dlist **lst, t_dlist *new);
-t_dlist				*ft_dlstlast(t_dlist *lst);
-t_dlist				*ft_dlstnew(int content);
 
 /*
 t_list				*ft_lstnew(void *content);
