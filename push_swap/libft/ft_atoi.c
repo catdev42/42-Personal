@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 22:18:59 by myakoven          #+#    #+#             */
-/*   Updated: 2023/11/26 19:46:33 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/05 03:54:55 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,34 @@ int	ft_atoi(const char *nptr)
 	}
 	return (num * sign);
 }
+
+long	ft_atol(const char *nptr)
+{
+	long	num;
+	long	sign;
+
+	num = 0;
+	sign = 1;
+	while (*nptr == ' ' || (*nptr >= 9 && *nptr <= 13))
+		nptr++;
+	if (*nptr == '-' || *nptr == '+')
+	{
+		if (*nptr == '+')
+			nptr++;
+		else if (*nptr == '-')
+		{
+			sign = -1;
+			nptr++;
+		}
+	}
+	while (*nptr >= '0' && *nptr <= '9')
+	{
+		num = num * 10 + (*nptr - 48);
+		nptr++;
+	}
+	return (num * sign);
+}
+
 /*
 #include <stdio.h>
 #include <stdlib.h>

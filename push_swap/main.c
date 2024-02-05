@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 01:11:09 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/05 02:00:48 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/05 04:31:03 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,35 +39,140 @@ int	main(int argc, char **argv)
 		return (1);
 	if (argc == 2)
 		argv = ft_split_ps(argv[1], ' ');
-	stack_a = ft_init_list(argv);
+	// Possible the check array should be checked earlier
+	if (!ft_checkarray(argc, argv) && argc > 2)
+		return (0);
+	else if (!ft_checkarray(argc, argv) && argc == 2)
+		return (ft_free_split_ps(argv, (ft_arrsize_twod(argv) - 1)));
+	// Initialize stack_a
+	stack_a = ft_init_list(argc, argv);
 	if (!stack_a)
 		return (2);
-	// First stack Initialized with values
+	// Stack_a initialized with values
+	ft_orders_list(stack_a);
+	// ft_index_list(stack_a, stack_b);
 	if (argc == 2)
 		// freeing the malloced argv in case of "283 563 166"
 		ft_free_split_ps(argv, (ft_arrsize_twod(argv) - 1));
 	return (0);
 }
 
-t_dlist	**ft_init_list(const char const **argv)
+int	ft_checkarray(int argc, char **arr)
+{
+	size_t	i;
+	size_t	j;
+
+	if (argc == 2)
+		argc = ft_matrixlen(arr);
+	i = 1;
+	while (arr[i] && i < argc)
+	{
+		if (ft_atol(arr[i]) > INT_MAX || ft_atol(arr[i]) < INT_MIN)
+			return (error_fail());
+		j = 0;
+		while (arr[i][j])
+		{
+			if (!ft_isdigit(arr[i][j++]))
+				return (error_fail());
+		}
+		j = 0;
+		while (arr[j])
+		{
+			if (i != j && !ft_strncmp(arr[i], arr[j], ft_strlen(arr[i]) + 1))
+				return (error_fail());
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	error_fail(void)
+{
+	write(2, "Error\n", 6);
+	return (0);
+}
+
+size_t	ft_matrixlen(const char **s)
+{
+	size_t	i;
+
+	if (s == NULL)
+		return (0);
+	i = 0;
+	while (s[i])
+	{
+		i++;
+	}
+	return (i);
+}
+// i = 0;
+// 	while (arr[i])
+// 	{
+// 		j = 0;
+// 		while (arr[j])
+// 		{
+// 			if (i != j && arr[i] == arr[j])
+// 			{
+// 				write(2, "Error\n", 6);
+// 				return (0);
+// 			}
+// 		}
+// 		i++;
+// 	}
+
+/******THIS NEEDS A COUNT LIMITER!!!*******/
+t_dlist	**ft_init_list(int argc, const char const **argv)
 {
 	size_t	i;
 	t_dlist	*temp;
+	t_dlist	*last;
+	t_dlist	**stack_a_init;
+
+	if (argc == 2)
+		argc = ft_matrixlen(argv);
+	i = 1;
+	*stack_a_init = ft_dlstnew(ft_atoi(argv[i++]));
+	temp = *stack_a_init;
+	while (argv[i] && i < argc)
+	{
+		last = temp;
+		temp = ft_dlstnew(ft_atoi(argv[i++]));
+		if (!temp)
+			ft_dlstclear(stack_a_init);
+		last->next = temp;
+		temp->prev = last;
+	}
+	// WHY IS THIS HERE?
+	// temp = ft_dlstnew(ft_atoi(argv[i++]));
+	// if (!temp)
+	// 	ft_dlstclear(stack_a_init);
+	// ft_dlstadd_back(stack_a_init, temp);
+	return (stack_a_init);
+}
+
+/*t_dlist	**ft_init_list(const char const **argv)
+{
+	size_t	i;
+	t_dlist	*temp;
+	// t_dlist *last;
 	t_dlist	**stack_a_init;
 
 	i = 1;
 	*stack_a_init = ft_dlstnew(ft_atoi(argv[i++]));
 	while (argv[i])
 	{
+		prev =
 		temp = ft_dlstnew(ft_atoi(argv[i++]));
 		if (!temp)
 			ft_dlstclear(stack_a_init);
+		// ***!!!*** MAYBE JUST ADD NEW NODE TO PREV NODE INSTEAD OF ALWAYS ITERATING
 		ft_dlstadd_back(stack_a_init, temp);
-		i++;
+		// i++;
 	}
 	temp = ft_dlstnew(ft_atoi(argv[i++]));
 	if (!temp)
 		ft_dlstclear(stack_a_init);
 	ft_dlstadd_back(stack_a_init, temp);
 	return (stack_a_init);
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 21:51:44 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/05 02:52:47 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/05 04:15:17 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct d_list
 
 char				**ft_split_ps(char const *s, char c);
 char				**ft_free_split_ps(char **arr, size_t index);
+size_t				ft_wordcount_ps(char const *s, char c);
 
 int					push(t_dlist **stack_from, t_dlist **stack_to);
 

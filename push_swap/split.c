@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:21:22 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/04 21:15:40 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/05 04:15:07 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**ft_split_ps(char const *s, char c)
 	size_t	arr_counter;
 	size_t	word_len;
 
-	arr = malloc((ft_wordcount(s, c) + 2) * sizeof(char *));
+	arr = malloc((ft_wordcount_ps(s, c) + 2) * sizeof(char *));
 	if (!arr || !s)
 		return (NULL);
 	arr_counter = 1;
@@ -45,7 +45,7 @@ char	**ft_split_ps(char const *s, char c)
 	return (arr);
 }
 
-static size_t	ft_wordcount(char const *s, char c)
+size_t	ft_wordcount_ps(char const *s, char c)
 {
 	size_t	count;
 
