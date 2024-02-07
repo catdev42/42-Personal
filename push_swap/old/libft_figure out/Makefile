@@ -6,11 +6,13 @@
 #    By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 15:27:14 by myakoven          #+#    #+#              #
-#    Updated: 2024/02/04 20:18:41 by myakoven         ###   ########.fr        #
+#    Updated: 2024/02/07 23:25:39 by myakoven         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:= libft.a
+
+AR		= ar
 
 GNLNAME = get_next_line.a
 GNLDIR = ./get_next_line
@@ -28,7 +30,7 @@ LIBFUN = ./libfunctions/libfunctions.a
 #   INGREDIENTS                                  #
 #------------------------------------------------#
 
-HEADERS 	:= .
+HEADERS 	:= ./includes
 SRC     	:= 
 OBJS     	= $(SRC:.c=.o)
 
@@ -44,20 +46,25 @@ all: $(NAME)
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-makegnl:
+FORCE:
+
+$(LIBFUN):
+	make -C $(LIBFUNDIR)
+
+$(GNL):
 	make -C $(GNLDIR)
 # cp $(GNL) .
 # mv $(GNLNAME) $(NAME)
 
-makeprintf:
+$(PRINTF):
 	make -C $(PRINTFDIR)
 
-makelibfun:
-	make -C $(LIBFUNDIR)
+# $(NAME): makelibfun makegnl makeprintf $(OBJS)
+# 	ar rc $(NAME) $(LIBFUN) $(PRINTF) $(GNL) $(OBJS)
 
-$(NAME): makegnl makelibfun makeprintf $(OBJS)
-	ar rc $(NAME) $(LIBFUN) $(PRINTF) $(GNL) 
-
+$(NAME):  $(LIBFUN) $(PRINTF) $(GNL)
+	ar rc $(NAME) $(LIBFUN) $(PRINTF) $(GNL)
+	
 clean:
 	rm -f *.o 
 	rm -f printf/*.o

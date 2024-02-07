@@ -6,7 +6,7 @@
 #    By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/25 18:58:02 by myakoven          #+#    #+#              #
-#    Updated: 2024/02/04 20:07:09 by myakoven         ###   ########.fr        #
+#    Updated: 2024/02/07 22:45:47 by myakoven         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME	:= get_next_line.a
 #   INGREDIENTS                                  #
 #------------------------------------------------#
 
-HEADERS 	:= .
+HEADERS 	:= ../includes
 SRC     	:= get_next_line.c 
 # get_next_line_utils.c
 OBJS     	= $(SRC:.c=.o)
@@ -37,10 +37,10 @@ CFLAGS  	:= -Wall -Wextra -Werror
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $< 
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
+	ar rc $(NAME) $(OBJS) 
 
 clean:
 	rm -f *.o

@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 00:11:55 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/07 22:46:28 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/07 22:42:19 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #  define BUFFER_SIZE 42
 # endif
 
-# include "../includes/libft.h"
+# include "libft.h"
 
 # include <fcntl.h>
 # include <limits.h>

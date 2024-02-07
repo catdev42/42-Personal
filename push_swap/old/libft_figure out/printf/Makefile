@@ -6,7 +6,7 @@
 #    By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 15:27:14 by myakoven          #+#    #+#              #
-#    Updated: 2024/02/04 19:16:05 by myakoven         ###   ########.fr        #
+#    Updated: 2024/02/07 22:45:24 by myakoven         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,11 @@ CFLAGS  	:= -Wall -Wextra -Werror
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $<  -I$(HEADERS)
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
+
 
 clean:
 	rm -f $(OBJS)
