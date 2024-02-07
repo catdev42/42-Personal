@@ -6,14 +6,11 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:21:22 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/05 04:15:07 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/07 23:29:23 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static size_t	ft_wordcount(char const *s, char c);
-char			**ft_free_split_ps(char **arr, size_t index);
 
 char	**ft_split_ps(char const *s, char c)
 {

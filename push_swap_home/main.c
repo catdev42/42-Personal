@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 01:11:09 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/05 04:31:03 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/07 23:31:27 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 // #include <stdio.h>
 
-int	ft_arrsize_twod(char **arr)
-{
-	int	i;
+// int	ft_arrsize_twod(char **arr)
+// {
+// 	int	i;
 
-	if (!arr)
-		return (0);
-	i = 0;
-	while (arr[i])
-		i++;
-	// i++;
-	// (sizeof(arr));
-	return (i);
-}
+// 	if (!arr)
+// 		return (0);
+// 	i = 0;
+// 	while (arr[i])
+// 		i++;
+// 	// i++;
+// 	// (sizeof(arr));
+// 	return (i);
+// }
 
 int	main(int argc, char **argv)
 {
@@ -93,9 +93,9 @@ int	error_fail(void)
 	return (0);
 }
 
-size_t	ft_matrixlen(const char **s)
+int	ft_matrixlen(const char **s)
 {
-	size_t	i;
+	int	i;
 
 	if (s == NULL)
 		return (0);
