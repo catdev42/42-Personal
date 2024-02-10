@@ -6,11 +6,31 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:21:22 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/06 19:51:22 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:35:58 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+char	**makearray(int argc, char **argv)
+{
+	char	**argv_replace;
+	int		i;
+
+	i = 0;
+	argv_replace = malloc(sizeof(char *) * argc);
+	if (!argv_replace)
+		return (NULL);
+	while (i < argc - 1)
+	{
+		argv_replace[i] = ft_strdup(argv[i + 1]);
+		if (!argv_replace[i])
+			return (ft_free_split_ps(argv_replace, i - 1));
+		i++;
+	}
+	argv_replace[i] = NULL;
+	return (argv_replace);
+}
 
 char	**ft_split_ps(char const *s, char c)
 {
@@ -68,7 +88,22 @@ char	**ft_free_split_ps(char **arr, int index)
 		free(arr[index]);
 		index--;
 	}
-	free(arr[0]);
+	if (index == 0)
+		free(arr[0]);
 	free(arr);
-	return (0);
+	return (NULL);
+}
+
+char	**free_array(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+	return (NULL);
 }

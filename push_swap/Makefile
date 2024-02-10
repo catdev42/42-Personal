@@ -6,7 +6,7 @@
 #    By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 15:27:14 by myakoven          #+#    #+#              #
-#    Updated: 2024/02/06 19:39:46 by myakoven         ###   ########.fr        #
+#    Updated: 2024/02/09 19:31:27 by myakoven         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,13 +47,21 @@ all: $(NAME)
 $(LIBFT):
 	$(MAKE) -C $(LIBDIR)
 
-$(NAME): $(OBJS) $(LIBFT) 
-	$(CC) -g $(CFLAGS) $^ -o $@
+$(NAME): $(LIBFT) $(OBJS) 
+	$(CC) -g3 $(CFLAGS) $(LIBFT) dll_utils.c main.c moves.c split.c -I push_swap.h -o $@
+
+# $(CC) -g $(CFLAGS) ./libft/*.o ./libft/printf/*.o $(OBJS)  -o $@
+
+#	$(CC) -g $(CFLAGS) $^ -o $@
 #	$(CC) $(CFLAGS) $(LIBFT) $(OBJS) -o push_swap
 #	ar -r $(NAME) $(OBJS)
 
+# $(NAME):  $(LIBFUN) $(PRINTF) $(GNL)
+# 	ar rc $(NAME) $(LIBFUN) $(PRINTF) $(GNL)
+
 clean:
 	rm -f $(OBJS)
+	rm -f ./objects/*.o 
 	cd $(LIBDIR) && make clean
 
 fclean: clean

@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:46:38 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/06 19:25:10 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:16:42 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,22 @@ int	push(t_node **stack_from, t_node **stack_to)
 	temp_newhead = temp_move->next;
 	if (stack_from && stack_to)
 	{
-		if (stack_to && *stack_to)
+		if (*stack_to)
 			temp_move->next = *stack_to;
 		else
 			temp_move->next = NULL;
 		if (stack_to && *stack_to)
 			(*stack_to)->prev = temp_move;
 		*stack_to = temp_move;
+		*stack_from = temp_newhead;
 	}
 	return (1);
 }
 
-int	swap(t_node const **stack)
+int	swap(t_node **stack)
 {
 	t_node	*first;
 	t_node	*second;
-	t_node	*temp;
 
 	if (!stack || !*stack)
 	{

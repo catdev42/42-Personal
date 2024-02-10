@@ -6,11 +6,11 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 01:14:09 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/04 19:24:53 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/02 00:09:41 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../libft.h"
 
 int	ft_printnum(int n)
 {
