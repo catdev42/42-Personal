@@ -6,7 +6,7 @@
 #    By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 15:27:14 by myakoven          #+#    #+#              #
-#    Updated: 2024/02/04 03:16:53 by myakoven         ###   ########.fr        #
+#    Updated: 2024/02/15 00:16:36 by myakoven         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LIBFT = ./libft/libft.a
 #------------------------------------------------#
 
 HEADERS 	:= .
-SRC     	:= main.c
+SRC     	:= pipex.c
 OBJS     	= $(SRC:.c=.o)
 
 # BONUS		= 
@@ -39,12 +39,12 @@ all: $(NAME)
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-makelib:
+$(LIBFT):
 	make -C $(LIBDIR)
 # cp $(LIBDIR)/$(LIBNAME) .
 # mv $(LIBNAME) $(NAME)
 
-$(NAME): makelib $(OBJS)
+$(NAME): $(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o pipex
 # ar -r $(NAME) $(OBJS)
 

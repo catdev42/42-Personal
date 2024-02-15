@@ -6,19 +6,16 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 19:22:22 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/15 00:23:39 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/07 22:37:06 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
-# endif
-
 // # include "./get_next_line/get_next_line.h"
-# include <fcntl.h>
+// # include "./printf/ft_printf.h"
+
 # include <limits.h>
 # include <stdarg.h>
 # include <stdint.h>
@@ -53,7 +50,6 @@ size_t				ft_strlcpy(char *dst, const char *src, size_t size);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 
 int					ft_atoi(const char *nptr);
-long				ft_atol(const char *nptr);
 
 void				*ft_calloc(size_t nmemb, size_t size);
 char				*ft_strdup(const char *s);
@@ -61,19 +57,20 @@ char				*ft_strdup(const char *s);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
-char				*ft_itoa(int n);
-char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 
 char				**ft_split(char const *s, char c);
 size_t				ft_wordcount(char const *s, char c);
+char				**ft_free_split(char **arr, size_t index);
+
+char				*ft_itoa(int n);
+char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 
-void				ft_freetab(char **arr, int len);
 /* SINGLE LINKED LIST */
 
 typedef struct s_list
@@ -115,13 +112,5 @@ char				*ft_uitoa_printf(unsigned int u);
 int					ft_unslen(unsigned int u);
 int					ft_print_it(uintptr_t address);
 char				*ft_itoa_printf(int n);
-
-/****GET_NEXT_LINE****/
-
-char				*get_next_line(int fd);
-char				*ft_read(int fd, char *line, char *buffer);
-char				*ft_strjoinbuff(char *s1, char const *buff);
-char				*ft_takeline(char *line, char *buffer);
-char				*ft_clearfree(char **buffer, char *line);
 
 #endif

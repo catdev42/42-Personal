@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 00:11:55 by myakoven          #+#    #+#             */
-/*   Updated: 2024/01/20 11:22:36 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/07 22:46:28 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10000000
+#  define BUFFER_SIZE 42
 # endif
+
+# include "../includes/libft.h"
 
 # include <fcntl.h>
 # include <limits.h>
@@ -28,10 +30,10 @@ char	*ft_strjoinbuff(char *s1, char const *buff);
 char	*ft_takeline(char *line, char *buffer);
 char	*ft_clearfree(char **buffer, char *line);
 
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-size_t	ft_strlen(const char *s);
-char	*ft_strchr(const char *s, int c);
-void	*ft_memmove(void *dest, const void *src, size_t n);
-void	ft_bzero(void *s, size_t n);
+// char	*ft_substr(char const *s, unsigned int start, size_t len);
+// size_t	ft_strlen(const char *s);
+// char	*ft_strchr(const char *s, int c);
+// void	*ft_memmove(void *dest, const void *src, size_t n);
+// void	ft_bzero(void *s, size_t n);
 
 #endif

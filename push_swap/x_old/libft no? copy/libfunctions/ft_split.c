@@ -6,14 +6,11 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:21:22 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/15 00:19:59 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/04 19:01:35 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-// static size_t	ft_wordcount(char const *s, char c);
-static char		**ft_free_split(char **arr, size_t index);
 
 char	**ft_split(char const *s, char c)
 {
@@ -37,7 +34,7 @@ char	**ft_split(char const *s, char c)
 			word_len = ft_strchr(s, c) - s;
 		arr[arr_counter++] = ft_substr(s, 0, word_len);
 		if (!arr[arr_counter - 1])
-			return (ft_free_split(arr, (arr_counter - 1)));
+			return (ft_free_split(arr, (arr_counter - 2)));
 		s += word_len;
 	}
 	arr[arr_counter] = NULL;
@@ -63,13 +60,15 @@ size_t	ft_wordcount(char const *s, char c)
 	return (count);
 }
 
-static char	**ft_free_split(char **arr, size_t index)
+char	**ft_free_split(char **arr, size_t index)
 {
-	while (index > 0)
+	while (index >0)
 	{
-		index--;
+		
 		free(arr[index]);
+		index--;
 	}
+	free(arr[0]);
 	free(arr);
 	return (NULL);
 }

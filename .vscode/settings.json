@@ -5,6 +5,13 @@
         "get_next_line.h": "c",
         "string.h": "c",
         "libft.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "__bit_reference": "c",
+        "__hash_table": "c",
+        "string": "c",
+        "string_view": "c",
+        "unordered_map": "c",
+        "__string": "c",
+        "unistd.h": "c"
     }
 }

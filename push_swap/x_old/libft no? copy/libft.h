@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   libft_all.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/26 14:59:56 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/14 16:25:10 by myakoven         ###   ########.fr       */
+/*   Created: 2023/11/19 19:22:22 by myakoven          #+#    #+#             */
+/*   Updated: 2024/02/07 22:38:23 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef LIBFT_ALL_H
+# define LIBFT_ALL_H
 
-void	ft_putendl_fd(char *s, int fd)
-{
-	while (*s)
-	{
-		ft_putchar_fd(*s, fd);
-		s++;
-	}
-	ft_putchar_fd('\n', fd);
-}
+# include "./libfunctions/libft.h"
+# include "./printf/ft_printf.h"
+# include "./get_next_line/get_next_line.h"
 
-/**/
+// # include <limits.h>
+// # include <stdarg.h>
+// # include <stdint.h>
+// # include <stdlib.h>
+// # include <unistd.h>
+
+#endif

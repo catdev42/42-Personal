@@ -6,13 +6,13 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:21:22 by myakoven          #+#    #+#             */
-/*   Updated: 2023/12/09 18:33:05 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/15 00:19:42 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_wordcount(char const *s, char c);
+// static size_t	ft_wordcount(char const *s, char c);
 static char		**ft_free_split(char **arr, size_t index);
 
 char	**ft_split(char const *s, char c)
