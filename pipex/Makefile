@@ -6,7 +6,7 @@
 #    By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 15:27:14 by myakoven          #+#    #+#              #
-#    Updated: 2024/02/15 00:16:36 by myakoven         ###   ########.fr        #
+#    Updated: 2024/02/17 00:51:21 by myakoven         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,11 @@ LIBFT = ./libft/libft.a
 #------------------------------------------------#
 
 HEADERS 	:= .
-SRC     	:= pipex.c
+SRC     	:= pipex.c pipex_utils.c
 OBJS     	= $(SRC:.c=.o)
+
+SRCBONUS	:= ./pipex_bonus/pipex_bonus.c ./pipex_bonus/pipex_bonus.h ./pipex_bonus/pipex_utils_bonus.c
+OBJSBONUS	:= $(SRCBONUS:.c=.o)
 
 # BONUS		= 
 # BONUS_OBJS	= $(BONUS:.c=.o)
@@ -57,6 +60,9 @@ fclean: clean
 	cd $(LIBDIR) && make fclean
 
 re: fclean all
+
+bonus: fclean $(LIBFT) $(OBJSBONUS)
+	$(CC) $(CFLAGS) $(OBJSBONUS) $(LIBFT) -o $(NAME)
 
 # bonus:	$(OBJS) $(BONUS_OBJS)
 # 	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
