@@ -12,6 +12,7 @@
         "string_view": "c",
         "unordered_map": "c",
         "__string": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "locale": "c"
     }
 }

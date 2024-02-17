@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 02:45:09 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/17 06:10:44 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/17 05:12:56 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,75 +14,97 @@
 
 int	main(int argc, char **argv, char **env)
 {
+	int		pfd[argc - 4][2];
+	int		pid;
 	t_info	basics;
 	char	cmdpath[101];
 	int		i;
-	int		pid;
-	int		pfd[argc - 4][2];
 
 	ft_init_basics(argc, argv, env, &basics);
 	if (argc < 5)
 		return (pip_error(1));
-	i = 2;
+	i = 0;
+	while (i < argc - 4)
+		if (pipe(pfd[i++]) == -1)
+			return (3);
 	dup2(basics.fd_in, 0);
-	while (i < argc - 2)
+	i = 0;
+	while (i + 2 < argc - 1)
 	{
-		exec_pipe(pfd[i - 2], argv[i], env, cmdpath);
+		pid = fork();
+		if (pid == -1)
+			return (4);
+		if (pid == 0)
+			child(&basics, i, pfd, cmdpath);
+		// else
+		// {
+		// 	if (i + 3 < argc - 2)
+		// 		dup2(pfd[i + 1][1], 1);
+		// 	else
+		// 		dup2(basics.fd_out, 1);
+		// 	dup2(pfd[i][0], 0);
+		// 	close(pfd[i][1]);
+		// 	close(pfd[i][0]);
+		// 	execute(argv[argc - 2], env, cmdpath);
+		// }
 		i++;
 	}
-	dup2(basics.fd_out, 1);
-	pid = fork();
-	if (pid == 0)
-		execute(argv[argc - 2], env, cmdpath);
-	return (0);
+	// close(pfd[i][1]);
+	// dup2(pfd[i][0], 0);
+	// dup2(basics.fd_out, 1);
+	// execute(argv[argc - 2], env, cmdpath);
 }
-void	exec_pipe(int *p_fd, char *cmd, char **env, char *cmdpath)
-{
-	int	pid;
 
-	if (pipe(p_fd) == -1)
-		exit(1);
-	pid = fork();
-	if (pid == -1)
-		exit(1);
-	if (pid == 0)
+void	child(t_info *basics, int round, int pfd[][2], char *cmdpath)
+{
+	// int	i;
+	// int	fd_read;
+	// int	fd_write;
+	// dup2(pfd[round - 1][0], 0);
+	if (round == 0)
 	{
-		close(p_fd[0]);
-		dup2(p_fd[1], 1);
-		execute(cmd, env, cmdpath);
+		// dup2(pfd[round][0], 0);
+		// dup2(pfd[round][1], 1);
+		dup2(basics->fd_in, 0);
+		dup2(pfd[0][1], 1);
+		close(pfd[0][0]);
+		close(pfd[0][1]);
 	}
 	else
 	{
-		close(p_fd[1]);
-		dup2(p_fd[0], 0);
+		if (round + 2 < basics->argc - 2)
+			dup2(pfd[round][1], 1);
+		else
+			dup2(basics->fd_out, 1);
+		dup2(pfd[round - 1][0], 0);
+		close(pfd[round - 1][1]);
+		close(pfd[round - 1][0]);
+		execute((basics->argv)[round + 2], basics->env, cmdpath);
 	}
+	/*
+	else
+	{
+		dup2(pfd[round - 1][0], 0);
+		dup2(pfd[round][1], 1);
+		close(pfd[round][0]);
+		close(pfd[round][1]);
+	}
+*/
+	// if (round != 0)
+	// 	dup2(fd_read, 0);
+	// dup2(fd_write, 1);
+	// i = 1;
+	// while (i < (basics->argc) - 4)
+	// {
+	// 	if (pfd[round][0] != pfd[i][0])
+	// 		close(pfd[i][0]);
+	// 	if (pfd[round][1] != pfd[i][1])
+	// 		close(pfd[i][1]);
+	// 	i++;
+	// }
+	ft_putstr_fd((basics->argv)[round + 2], 2);
+	execute((basics->argv)[round + 2], basics->env, cmdpath);
 }
-// void	exec_pipe(int *p_fd, char *cmd, char **env, char *cmdpath)
-// {
-// 	pid_t	pid;
-
-// 	// int		p_fd[2];
-// 	if (pipe(p_fd) == -1)
-// 		exit(0);
-// 	pid = fork();
-// 	if (pid == -1)
-// 		exit(0);
-// 	if (!pid)
-// 	{
-// 		// child process assigns the write end to out
-// 		close(p_fd[0]);
-// 		dup2(p_fd[1], 1);
-// 		execute(cmd, env, cmdpath);
-// 	}
-// 	else
-// 	{
-// 		/*
-// 		parent process asssigns the read end to std_in and doesn't evaporate next function will automatically read from std in which is now the read end of the pipe
-// 		*/
-// 		close(p_fd[1]);
-// 		dup2(p_fd[0], 0);
-// 	}
-// }
 
 void	ft_init_basics(int argc, char **argv, char **env, t_info *basics)
 {

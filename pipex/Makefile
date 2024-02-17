@@ -6,11 +6,12 @@
 #    By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 15:27:14 by myakoven          #+#    #+#              #
-#    Updated: 2024/02/17 00:51:21 by myakoven         ###   ########.fr        #
+#    Updated: 2024/02/17 03:54:59 by myakoven         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:= pipex
+NAME_BONUS := pipexbonus
 
 LIBNAME = libft.a
 LIBDIR = ./libft
@@ -24,7 +25,7 @@ HEADERS 	:= .
 SRC     	:= pipex.c pipex_utils.c
 OBJS     	= $(SRC:.c=.o)
 
-SRCBONUS	:= ./pipex_bonus/pipex_bonus.c ./pipex_bonus/pipex_bonus.h ./pipex_bonus/pipex_utils_bonus.c
+SRCBONUS	:= ./pipex_bonus/pipex_bonus.c ./pipex_bonus/pipex_utils_bonus.c
 OBJSBONUS	:= $(SRCBONUS:.c=.o)
 
 # BONUS		= 
@@ -54,6 +55,7 @@ $(NAME): $(LIBFT) $(OBJS)
 clean:
 	rm -f $(OBJS)
 	cd $(LIBDIR) && make clean
+	rm -f $(OBJSBONUS)
 
 fclean: clean
 	rm -f $(NAME)
@@ -61,8 +63,12 @@ fclean: clean
 
 re: fclean all
 
-bonus: fclean $(LIBFT) $(OBJSBONUS)
-	$(CC) $(CFLAGS) $(OBJSBONUS) $(LIBFT) -o $(NAME)
+bonus: $(NAME_BONUS) 
+
+$(NAME_BONUS): $(LIBFT) $(OBJSBONUS)
+	$(CC) $(CFLAGS) -g $(SRCBONUS) $(LIBFT) -o pipexbonus
+# 	$(CC) $(CFLAGS) -g $(OBJSBONUS) $(LIBFT) -o pipexbonus
+
 
 # bonus:	$(OBJS) $(BONUS_OBJS)
 # 	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
